@@ -18,6 +18,6 @@ class ResourceStrategyTest extends TestCase
         $strategy = new ResourceStrategy(new Pipe());
         $renderer = new Renderer($strategy);
         $renderer->render($renderable, (object)[]);
-        $this->assertEquals(['test'], $strategy->getNames());
+        $this->assertEquals(['test'], $strategy->getResources());
     }
 }

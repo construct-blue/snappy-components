@@ -15,7 +15,7 @@ class ResourceStrategy implements Strategy
 {
     private Strategy $strategy;
 
-    private array $names = [];
+    private array $resources = [];
 
     /**
      * @param Strategy $strategy
@@ -28,9 +28,9 @@ class ResourceStrategy implements Strategy
     /**
      * @return array
      */
-    public function getNames(): array
+    public function getResources(): array
     {
-        return $this->names;
+        return $this->resources;
     }
 
     public function render(mixed $element, object $model, Renderer $renderer, NextStrategy $next): string
@@ -38,12 +38,12 @@ class ResourceStrategy implements Strategy
         if ($element instanceof Closure) {
             $reflection = new ReflectionFunction($element);
             foreach ($reflection->getAttributes(Resource::class) as $attribute) {
-                $this->names[] = $attribute->getArguments()[0];
+                $this->resources[] = $attribute->getArguments()[0];
             }
         } else if (is_object($element)) {
             $reflection = new ReflectionObject($element);
             foreach ($reflection->getAttributes(Resource::class) as $attribute) {
-                $this->names[] = $attribute->getArguments()[0];
+                $this->resources[] = $attribute->getArguments()[0];
             }
         }
 
