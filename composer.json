@@ -1,6 +1,6 @@
 {
   "name": "construct-blue/snappy-components",
-  "description": "A component oriented server side rendering engine for PHP",
+  "description": "Basic components",
   "homepage": "https://github.com/construct-blue/snappy-components",
   "type": "library",
   "license": "MIT",
