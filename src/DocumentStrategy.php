@@ -6,6 +6,7 @@ namespace SnappyComponents;
 
 use SnappyRenderer\NextStrategy;
 use SnappyRenderer\Renderer;
+use SnappyRenderer\RenderPipeline;
 use SnappyRenderer\Strategy;
 
 class DocumentStrategy implements Strategy
@@ -16,7 +17,7 @@ class DocumentStrategy implements Strategy
     public function __construct(Document $document, Strategy $strategy = null)
     {
         $this->document = $document;
-        $this->strategy = new ResourceStrategy($strategy ?? new Strategy\Pipeline\Pipe());
+        $this->strategy = new ResourceStrategy($strategy ?? new RenderPipeline());
     }
 
     public function render($element, object $model, Renderer $renderer, NextStrategy $next): string

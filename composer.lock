@@ -12,26 +12,26 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/construct-blue/snappy-renderer.git",
-                "reference": "dd366010ae6605268f6e819babc0cd11b1b35aa9"
+                "reference": "1437fc897377a705cd6e1a4f7bbc4fdcdf8e5976"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/construct-blue/snappy-renderer/zipball/dd366010ae6605268f6e819babc0cd11b1b35aa9",
-                "reference": "dd366010ae6605268f6e819babc0cd11b1b35aa9",
+                "url": "https://api.github.com/repos/construct-blue/snappy-renderer/zipball/1437fc897377a705cd6e1a4f7bbc4fdcdf8e5976",
+                "reference": "1437fc897377a705cd6e1a4f7bbc4fdcdf8e5976",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
+                "phpmd/phpmd": "^2.13",
+                "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.0"
             },
             "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
-                    "stringable.php",
-                    "get_debug_type.php",
                     "functions.php"
                 ],
                 "psr-4": {
@@ -55,7 +55,7 @@
             "support": {
                 "source": "https://github.com/construct-blue/snappy-renderer/tree/main"
             },
-            "time": "2023-02-26T09:33:33+00:00"
+            "time": "2023-02-26T12:07:36+00:00"
         }
     ],
     "packages-dev": [
