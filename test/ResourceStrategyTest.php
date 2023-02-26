@@ -17,7 +17,8 @@ class ResourceStrategyTest extends TestCase
         $renderable = new RenderableIterable([include 'functional/resource_test.php']);
         $strategy = new ResourceStrategy(new Pipe());
         $renderer = new Renderer($strategy);
-        $renderer->render($renderable, (object)[]);
-        $this->assertEquals(['test'], $strategy->getResources());
+        $result = $renderer->render($renderable, (object)[]);
+        self::assertEquals('hello world', $result);
+        self::assertEquals(['test'], $strategy->getResources());
     }
 }

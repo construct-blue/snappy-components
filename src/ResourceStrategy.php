@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
-use Closure;
-use ReflectionFunction;
-use ReflectionObject;
 use SnappyRenderer\NextStrategy;
 use SnappyRenderer\Renderer;
 use SnappyRenderer\Strategy;
@@ -30,21 +27,17 @@ class ResourceStrategy implements Strategy
      */
     public function getResources(): array
     {
-        return $this->resources;
+        return array_values($this->resources);
     }
 
-    public function render(mixed $element, object $model, Renderer $renderer, NextStrategy $next): string
+    public function render($element, object $model, Renderer $renderer, NextStrategy $next): string
     {
-        if ($element instanceof Closure) {
-            $reflection = new ReflectionFunction($element);
-            foreach ($reflection->getAttributes(Resource::class) as $attribute) {
-                $this->resources[] = $attribute->getArguments()[0];
+        if ($element instanceof Resource) {
+            $code = $element->getCode();
+            if (!isset($this->resources[$code])) {
+                $this->resources[$code] = $code;
             }
-        } else if (is_object($element)) {
-            $reflection = new ReflectionObject($element);
-            foreach ($reflection->getAttributes(Resource::class) as $attribute) {
-                $this->resources[] = $attribute->getArguments()[0];
-            }
+            return '';
         }
 
         return $this->strategy->render($element, $model, $renderer, $next);

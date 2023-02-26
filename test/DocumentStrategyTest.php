@@ -16,6 +16,6 @@ class DocumentStrategyTest extends TestCase
     {
         $renderer = new Renderer(new DocumentStrategy(new Document('en', 'example')));
         $result = $renderer->render(new RenderableIterable(['<h1>example</h1>']), (object)[]);
-        $this->assertEquals('<!DOCTYPE html><html lang="en"><head><title>example</title></head><body><h1>example</h1></body>', $result);
+        self::assertEquals('<!DOCTYPE html><html lang="en"><head><title>example</title></head><body><h1>example</h1></body>', $result);
     }
 }

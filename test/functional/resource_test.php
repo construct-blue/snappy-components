@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use SnappyComponents\Resource;
 
-return #[Resource('test')] function () {
-    yield '';
+return function () {
+    yield new \SnappyComponents\Resource('test');
+    yield 'hello world';
 };

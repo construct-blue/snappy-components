@@ -15,7 +15,7 @@ class DocumentTest extends TestCase
         $doc = new Document('en', 'example');
         $renderer = new Renderer();
         $result = $renderer->render($doc, (object)[]);
-        $this->assertEquals('<!DOCTYPE html><html lang="en"><head><title>example</title></head><body></body>', $result);
+        self::assertEquals('<!DOCTYPE html><html lang="en"><head><title>example</title></head><body></body>', $result);
     }
 
     public function testRenderWithContent()
@@ -25,6 +25,6 @@ class DocumentTest extends TestCase
         $doc->setBody(['body']);
         $renderer = new Renderer();
         $result = $renderer->render($doc, (object)[]);
-        $this->assertEquals('<!DOCTYPE html><html lang="en"><head><title>example</title>head</head><body>body</body>', $result);
+        self::assertEquals('<!DOCTYPE html><html lang="en"><head><title>example</title>head</head><body>body</body>', $result);
     }
 }

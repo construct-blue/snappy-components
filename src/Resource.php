@@ -4,12 +4,24 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
-use Attribute;
+use SnappyRenderer\Renderable;
 
-#[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_FUNCTION | Attribute::IS_REPEATABLE)]
-class Resource
+class Resource implements Renderable
 {
+    private string $code;
+
     public function __construct(string $code)
     {
+        $this->code = $code;
+    }
+
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    public function render(object $model): iterable
+    {
+        return [];
     }
 }

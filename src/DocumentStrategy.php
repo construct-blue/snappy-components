@@ -19,7 +19,7 @@ class DocumentStrategy implements Strategy
         $this->strategy = new ResourceStrategy($strategy ?? new Strategy\Pipeline\Pipe());
     }
 
-    public function render(mixed $element, object $model, Renderer $renderer, NextStrategy $next): string
+    public function render($element, object $model, Renderer $renderer, NextStrategy $next): string
     {
         $body = $this->strategy->render($element, $model, $renderer, $next);
         $this->document->setBody([$body]);
