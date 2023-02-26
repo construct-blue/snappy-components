@@ -20,8 +20,8 @@ $document = new SnappyComponents\Document('en', 'Example');
 $documentStrategy = new SnappyComponents\DocumentStrategy($document);
 // Configuring the renderer with the strategy
 $renderer = new SnappyRenderer\Renderer($documentStrategy);
-echo $renderer->render(new SnappyRenderer\Renderable\Functional(
-    fn() => include 'greeting.php'),
+echo $renderer->render(
+    new SnappyRenderer\Renderable\Functional(include 'greeting.php'),
     (object)['name' => 'world']
 )
 ```
