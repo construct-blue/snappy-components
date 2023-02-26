@@ -1,0 +1,54 @@
+<?php
+
+require '../vendor/autoload.php';
+
+$document = new SnappyComponents\Document('en', 'Functional Components');
+$document->setHead([
+    '<style>',
+    include 'components/styles.php',
+    '</style>'
+]);
+$documentStrategy = new SnappyComponents\DocumentStrategy($document);
+$renderer = new SnappyRenderer\Renderer($documentStrategy);
+
+echo $renderer->render(
+    new SnappyRenderer\Renderable\Functional(fn() => [
+        '<h1>Functional Components</h1>',
+        include 'components/navigation.php',
+        '<article>',
+        '<p>Functional components are the easiest way to create a reusable HTML-Snippet for your page. Once created you can include them in any other component.',
+        '<p>To define a new functional component create a plain PHP-File returning a closure that generates HTML-Elements.</p>',
+        '<h2>Example</h2>',
+        '<p>Defining a functional component:</p>',
+        '<pre>',
+            highlight_string(
+                <<<PHP
+<?php
+
+return fn() => yield <<<HTML
+<p>The quick brown fox jumps over the lazy dog.</p>
+HTML;
+PHP
+,true
+            ),
+
+        '</pre>',
+        '<p>Using the functional component:</p>',
+        '<pre>',
+        highlight_string(
+            <<<PHP
+<?php
+
+return fn() => [
+    '<h1>Hello world</h1>',
+    yield include 'my-component.php'
+];
+PHP
+            ,true
+        ),
+        '</pre>',
+        '</article>',
+        (include 'components/code.php')(__FILE__)
+    ]),
+    (object)[]
+);
