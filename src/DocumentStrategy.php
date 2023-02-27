@@ -11,19 +11,22 @@ use SnappyRenderer\Strategy;
 
 class DocumentStrategy implements Strategy
 {
-    private ResourceStrategy $strategy;
+    private Strategy $strategy;
     private Document $document;
 
     public function __construct(Document $document, Strategy $strategy = null)
     {
         $this->document = $document;
-        $this->strategy = new ResourceStrategy($strategy ?? new RenderPipeline());
+        $this->strategy = $strategy ?? new RenderPipeline();
     }
 
     public function render($element, object $model, Renderer $renderer, NextStrategy $next): string
     {
-        $body = $this->strategy->render($element, $model, $renderer, $next);
+        $renderer = new Renderer($this->strategy);
+        $resourceStrategy = new ResourceStrategy($this->strategy);
+        $body = $this->strategy->render($element, $model, new Renderer($resourceStrategy), $next);
         $this->document->setBody([$body]);
-        return (new Renderer($this->strategy))->render($this->document, $model);
+        $this->document->setHead($resourceStrategy->getResources());
+        return $renderer->render($this->document, $model);
     }
 }

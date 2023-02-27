@@ -6,12 +6,17 @@ namespace SnappyComponents;
 
 use SnappyRenderer\Renderable;
 
+/**
+ * @phpstan-import-type element from Renderable
+ */
 class Document implements Renderable
 {
     private string $lang;
     private string $title;
-    private iterable $head = [];
-    private iterable $body = [];
+    /** @var element */
+    private $head = '';
+    /** @var element */
+    private $body = '';
 
     /**
      * @param string $lang
@@ -24,17 +29,17 @@ class Document implements Renderable
     }
 
     /**
-     * @param iterable $body
+     * @param element $body
      */
-    public function setBody(iterable $body): void
+    public function setBody($body): void
     {
         $this->body = $body;
     }
 
     /**
-     * @param iterable $head
+     * @param element $head
      */
-    public function setHead(iterable $head): void
+    public function setHead($head): void
     {
         $this->head = $head;
     }

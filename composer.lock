@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/construct-blue/snappy-renderer.git",
-                "reference": "00b20646e9637d9ebd738b0fda8c789f344fdea6"
+                "reference": "7846a0c8bb9414ed242d60c25f2d0939ca41a01e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/construct-blue/snappy-renderer/zipball/00b20646e9637d9ebd738b0fda8c789f344fdea6",
-                "reference": "00b20646e9637d9ebd738b0fda8c789f344fdea6",
+                "url": "https://api.github.com/repos/construct-blue/snappy-renderer/zipball/7846a0c8bb9414ed242d60c25f2d0939ca41a01e",
+                "reference": "7846a0c8bb9414ed242d60c25f2d0939ca41a01e",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
             "support": {
                 "source": "https://github.com/construct-blue/snappy-renderer/tree/main"
             },
-            "time": "2023-02-26T14:15:50+00:00"
+            "time": "2023-02-27T07:38:52+00:00"
         }
     ],
     "packages-dev": [
