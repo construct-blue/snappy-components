@@ -22,6 +22,7 @@ class Capture implements Renderable
     /**
      * @param string $slot
      * @param element $element
+     * @param bool $append
      */
     public function __construct(string $slot, $element, bool $append = false)
     {

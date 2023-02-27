@@ -3,7 +3,7 @@
 require '../vendor/autoload.php';
 
 $document = new SnappyComponents\Document('en', 'Functional Components');
-$documentStrategy = new \SnappyComponents\Strategy\RenderDocument($document);
+$documentStrategy = new SnappyComponents\Strategy\RenderDocument($document);
 $renderer = new SnappyRenderer\Renderer($documentStrategy);
 
 echo $renderer->render(
