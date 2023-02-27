@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponents;
+namespace SnappyComponents\Strategy;
 
+use SnappyComponents\Document;
+use SnappyComponents\Slot;
 use SnappyRenderer\NextStrategy;
 use SnappyRenderer\Renderer;
 use SnappyRenderer\RenderPipeline;
 use SnappyRenderer\Strategy;
 
-class DocumentStrategy implements Strategy
+class RenderDocument implements Strategy
 {
     private Strategy $strategy;
     private Document $document;
@@ -22,7 +24,7 @@ class DocumentStrategy implements Strategy
 
     public function render($element, object $model, Renderer $renderer, NextStrategy $next): string
     {
-        $renderer = new Renderer(new SlotStrategy($this->strategy), $next);
+        $renderer = new Renderer(new RenderSlots($this->strategy), $next);
         $this->document->setHead(new Slot('head'));
         $this->document->setBody($element);
         return $renderer->render($this->document, $model);

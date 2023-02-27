@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponents;
+namespace SnappyComponents\Strategy;
 
+use SnappyComponents\Capture;
+use SnappyComponents\Slot;
 use SnappyRenderer\NextStrategy;
 use SnappyRenderer\Renderer;
 use SnappyRenderer\Strategy;
 
-class SlotStrategy implements Strategy
+class RenderSlots implements Strategy
 {
     private Strategy $strategy;
 

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SnappyComponentsTest;
 
+use PHPUnit\Framework\TestCase;
 use SnappyComponents\Capture;
 use SnappyComponents\Slot;
-use PHPUnit\Framework\TestCase;
-use SnappyComponents\SlotStrategy;
+use SnappyComponents\Strategy\RenderSlots;
 use SnappyRenderer\Renderer;
 use SnappyRenderer\RenderPipeline;
 
@@ -15,7 +15,7 @@ class SlotTest extends TestCase
 {
     public function testShouldRenderCapturesToSlots()
     {
-        $renderer = new Renderer(new SlotStrategy(new RenderPipeline()));
+        $renderer = new Renderer(new RenderSlots(new RenderPipeline()));
 
         $result = $renderer->render([
             '<head>',

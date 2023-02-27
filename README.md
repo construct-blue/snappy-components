@@ -17,7 +17,7 @@ HTML;
 // Template for the HTML-Document
 $document = new SnappyComponents\Document('en', 'Example');
 // Strategy to wrap any rendered renderable with an HTML-Document
-$documentStrategy = new SnappyComponents\DocumentStrategy($document);
+$documentStrategy = new \SnappyComponents\Strategy\RenderDocument($document);
 // Configuring the renderer with the strategy
 $renderer = new SnappyRenderer\Renderer($documentStrategy);
 echo $renderer->render(
