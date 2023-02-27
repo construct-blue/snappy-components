@@ -11,8 +11,8 @@ use SnappyRenderer\Renderable;
  */
 class Capture implements Renderable
 {
-
     private string $slot;
+    private bool $append = false;
 
     /**
      * @var element
@@ -23,10 +23,11 @@ class Capture implements Renderable
      * @param string $slot
      * @param element $element
      */
-    public function __construct(string $slot, $element)
+    public function __construct(string $slot, $element, bool $append = false)
     {
         $this->slot = $slot;
         $this->element = $element;
+        $this->append = $append;
     }
 
     /**
@@ -38,15 +39,15 @@ class Capture implements Renderable
     }
 
     /**
-     * @return element
+     * @return bool
      */
-    public function getElement()
+    public function isAppend(): bool
     {
-        return $this->element;
+        return $this->append;
     }
 
     public function render(object $model): iterable
     {
-        return [];
+        return [$this->element];
     }
 }

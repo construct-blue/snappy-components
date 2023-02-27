@@ -12,6 +12,11 @@ class SlotStrategy implements Strategy
 {
     private Strategy $strategy;
 
+    /** @var Capture[] */
+    private array $captures = [];
+    /** @var Slot[] */
+    private array $slots = [];
+
     /**
      * @param Strategy $strategy
      */
@@ -22,7 +27,29 @@ class SlotStrategy implements Strategy
 
     public function render($element, object $model, Renderer $renderer, NextStrategy $next): string
     {
+        if ($element instanceof Capture) {
+            $this->captures[] = $element;
+            return '';
+        }
 
-        return $this->strategy->render($element, $model, $renderer, $next);
+        $result = $this->strategy->render($element, $model, $renderer, $next);
+
+        if ($element instanceof Slot) {
+            $this->slots[$element->getCode()] = $result;
+        }
+
+        $placeholders = [];
+        $replacements = [];
+
+        foreach ($this->captures as $capture) {
+            $placeholders[$capture->getSlot()] = $this->slots[$capture->getSlot()];
+            if ($capture->isAppend() && isset($replacements[$capture->getSlot()])) {
+                $replacements[$capture->getSlot()] .= (new Renderer($this->strategy, $next))->render($capture, $model);
+            } else {
+                $replacements[$capture->getSlot()] = (new Renderer($this->strategy, $next))->render($capture, $model);
+            }
+        }
+
+        return str_replace($placeholders, $replacements, $result);
     }
 }

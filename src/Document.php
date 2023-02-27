@@ -60,6 +60,7 @@ class Document implements Renderable
                 $this->body,
             ],
             '</body>',
+            '</html>'
         ];
     }
 }

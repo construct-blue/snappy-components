@@ -22,11 +22,9 @@ class DocumentStrategy implements Strategy
 
     public function render($element, object $model, Renderer $renderer, NextStrategy $next): string
     {
-        $renderer = new Renderer($this->strategy);
-        $resourceStrategy = new ResourceStrategy($this->strategy);
-        $body = $this->strategy->render($element, $model, new Renderer($resourceStrategy), $next);
-        $this->document->setBody([$body]);
-        $this->document->setHead($resourceStrategy->getResources());
+        $renderer = new Renderer(new SlotStrategy($this->strategy), $next);
+        $this->document->setHead(new Slot('head'));
+        $this->document->setBody($element);
         return $renderer->render($this->document, $model);
     }
 }

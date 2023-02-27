@@ -3,18 +3,12 @@
 require '../vendor/autoload.php';
 
 $document = new SnappyComponents\Document('en', 'Functional Components');
-$document->setHead([
-    '<style>',
-    include 'components/styles.php',
-    '</style>'
-]);
 $documentStrategy = new SnappyComponents\DocumentStrategy($document);
 $renderer = new SnappyRenderer\Renderer($documentStrategy);
 
 echo $renderer->render(
     new SnappyRenderer\Renderable\Functional(fn() => [
-        '<h1>Functional Components</h1>',
-        include 'components/navigation.php',
+        (include 'components/header.php')('Functional Components'),
         '<article>',
         '<p>Functional components are the easiest way to create a reusable HTML-Snippet for your page. Once created you can include them in any other component.',
         '<p>To define a new functional component create a plain PHP-File returning a closure that generates HTML-Elements.</p>',

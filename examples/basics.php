@@ -17,8 +17,7 @@ $renderer = new SnappyRenderer\Renderer($documentStrategy);
 
 echo $renderer->render(
     new SnappyRenderer\Renderable\Functional(fn() => [
-        '<h1>The Basics</h1>',
-        include 'components/navigation.php',
+        (include 'components/header.php')('The Basics'),
         '<p></p>',
         (include 'components/code.php')(__FILE__),
     ]),

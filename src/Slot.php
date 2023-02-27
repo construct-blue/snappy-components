@@ -10,8 +10,6 @@ class Slot implements Renderable
 {
     private string $code;
 
-    private Capture $capture;
-
     /**
      * @param string $code
      */
@@ -21,15 +19,19 @@ class Slot implements Renderable
     }
 
     /**
-     * @param Capture $capture
+     * @return string
      */
-    public function setCapture(Capture $capture): void
+    public function getCode(): string
     {
-        $this->capture = $capture;
+        return $this->code;
     }
 
     public function render(object $model): iterable
     {
-        return [$this->capture ?? ''];
+        return [
+            <<<HTML
+<slot name="$this->code"></slot>
+HTML
+        ];
     }
 }
