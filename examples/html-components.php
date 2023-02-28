@@ -3,6 +3,8 @@
 use SnappyComponents\Article;
 use SnappyComponents\Button;
 use SnappyComponents\Details;
+use SnappyComponents\Div;
+use SnappyComponents\Heading;
 use SnappyComponents\Strategy\RenderDocument;
 
 require '../vendor/autoload.php';
@@ -12,30 +14,23 @@ $renderer = new SnappyRenderer\Renderer(new RenderDocument($document));
 
 echo $renderer->render([
     include 'components/header.php',
-    '<h2>HTML Components</h2>',
+    new Heading(2, 'HTML Components'),
     (include 'components/columns.php')([
-        '<div>',
-        '<h3>Output</h3>',
+        new Div([
+            new Heading(3, 'Output'),
+            new Article(
+                new Details('Knock, knock.', [
+                    new Details('Who’s there?', [
+                        new Details('Luke.', [
+                            new Details('Luke who?', 'Luke through the peep hole and find out.'),
+                        ]),
+                    ])
+                ]),
+            ),
+            new Button('Press me!'),
+        ]),
 
-        new Article(
-            new Details('Knock, knock.', [
-                new Details('Who’s there?', [
-                    new Details('Luke.', [
-                        new Details('Luke who?', 'Luke through the peep hole and find out.'),
-                    ]),
-                ])
-            ]),
-        ),
-        '<p></p>',
-
-        new Button('Press me!'),
-        '</div>',
-
-        '<div>',
-        [
-            (include 'components/code.php')(__FILE__),
-        ],
-        '</div>',
+        new Div((include 'components/code.php')(__FILE__))
     ]),
 ],
     (object)[]
