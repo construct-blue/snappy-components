@@ -7,7 +7,7 @@ $documentStrategy = new SnappyComponents\Strategy\RenderDocument($document);
 $renderer = new SnappyRenderer\Renderer($documentStrategy);
 
 echo $renderer->render(
-    new SnappyRenderer\Renderable\Functional(fn() => [
+    [
         (include 'components/header.php')('Functional Components'),
         '<article>',
         '<p>Functional components are the easiest way to create a reusable HTML-Snippet for your page. Once created you can include them in any other component.',
@@ -15,16 +15,16 @@ echo $renderer->render(
         '<h2>Example</h2>',
         '<p>Defining a functional component:</p>',
         '<pre>',
-            highlight_string(
-                <<<PHP
+        highlight_string(
+            <<<PHP
 <?php
 
 return fn() => yield <<<HTML
 <p>The quick brown fox jumps over the lazy dog.</p>
 HTML;
 PHP
-,true
-            ),
+            , true
+        ),
 
         '</pre>',
         '<p>Using the functional component:</p>',
@@ -38,11 +38,11 @@ return fn() => [
     yield include 'my-component.php'
 ];
 PHP
-            ,true
+            , true
         ),
         '</pre>',
         '</article>',
         (include 'components/code.php')(__FILE__)
-    ]),
+    ],
     (object)[]
 );
