@@ -5,7 +5,7 @@ declare(strict_types=1);
 return fn() => yield <<<CSS
 .columns {
     display: flex;
-    padding: 1rem;
+    gap: 1rem;
 }
 
 .columns > div {

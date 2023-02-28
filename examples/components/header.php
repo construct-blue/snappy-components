@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-return function (string $heading) {
+return function () {
     yield '<header>';
     yield new SnappyComponents\Capture('head', [
         '<style>',
@@ -10,7 +10,7 @@ return function (string $heading) {
         '</style>'
     ]);
     yield <<<HTML
-<h1>$heading</h1>
+<h1>Snappy Components</h1>
 HTML;
     yield include 'navigation.php';
     yield '</header>';
