@@ -127,11 +127,15 @@ class Button implements Renderable
     private string $value = '';
 
     /**
-     * @param $element
+     * @param element $element
+     * @param array $attributes
      */
-    public function __construct($element)
+    public function __construct($element, array $attributes = [])
     {
         $this->element = $element;
+        foreach ($attributes as $name => $value) {
+            $this->$name = $value;
+        }
     }
 
     /**
