@@ -10,8 +10,7 @@ require '../vendor/autoload.php';
 $document = new SnappyComponents\Document('en', 'HTML Components');
 $renderer = new SnappyRenderer\Renderer(new RenderDocument($document));
 
-echo $renderer->render(
-    new SnappyRenderer\Renderable\Functional(fn() => [
+echo $renderer->render([
         (include 'components/header.php')('HTML Components'),
         (include 'components/columns.php')([
             '<div>',
@@ -36,6 +35,6 @@ echo $renderer->render(
 
             '</div>',
         ]),
-    ]),
+    ],
     (object)[]
 );
