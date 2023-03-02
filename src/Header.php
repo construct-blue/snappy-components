@@ -6,12 +6,18 @@ namespace SnappyComponents;
 
 use SnappyRenderer\Renderable;
 
+/***
+ * @phpstan-import-type element from Renderable
+ */
 class Header implements Renderable
 {
+    /**
+     * @var element
+     */
     private $element;
 
     /**
-     * @param $element
+     * @param element $element
      */
     public function __construct($element)
     {

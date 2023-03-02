@@ -24,7 +24,7 @@ class Details implements Renderable
      * The disclosed HTML-Content
      * @var element
      */
-    private $element;
+    private $content;
 
     /**
      * This Boolean attribute indicates whether the details — that is, the contents of the &lt;details&gt; element — are currently visible.
@@ -37,12 +37,12 @@ class Details implements Renderable
 
     /**
      * @param element $summary
-     * @param element $element
+     * @param element $content
      */
-    public function __construct($summary, $element)
+    public function __construct($summary, $content)
     {
         $this->summary = $summary;
-        $this->element = $element;
+        $this->content = $content;
     }
 
     /**
@@ -65,7 +65,7 @@ class Details implements Renderable
         yield '<summary>';
         yield $this->summary;
         yield '</summary>';
-        yield $this->element;
+        yield $this->content;
         yield '</details>';
     }
 }

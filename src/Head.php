@@ -8,23 +8,27 @@ use SnappyRenderer\Renderable;
 
 /**
  * The Document Metadata (Header) element
+ * @phpstan-import-type element from Renderable
  */
 class Head implements Renderable
 {
-    private $element;
+    /**
+     * @var element
+     */
+    private $content;
 
     /**
-     * @param $element
+     * @param element $content
      */
-    public function __construct($element)
+    public function __construct($content)
     {
-        $this->element = $element;
+        $this->content = $content;
     }
 
     public function render(object $model): iterable
     {
         yield '<head>';
-        yield $this->element;
+        yield $this->content;
         yield '</head>';
     }
 }

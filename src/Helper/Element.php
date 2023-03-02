@@ -6,6 +6,9 @@ namespace SnappyComponents\Helper;
 
 use SnappyRenderer\Renderable;
 
+/**
+ * @phpstan-import-type element from Renderable
+ */
 class Element implements Renderable
 {
     private string $tag;
@@ -13,11 +16,14 @@ class Element implements Renderable
     private AttributeMap $attributeMap;
     public ClassList $classList;
 
+    /**
+     * @var element
+     */
     private $content;
 
     /**
      * @param string $tag
-     * @param $content
+     * @param element $content
      * @param string $classes
      */
     public function __construct(string $tag, $content, string $classes = '')
@@ -54,6 +60,7 @@ class Element implements Renderable
         $this->attributeMap->remove($name);
         return $this;
     }
+
     /**
      * @param object $model
      * @return iterable

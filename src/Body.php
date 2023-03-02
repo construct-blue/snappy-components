@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
+use SnappyComponents\Helper\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -13,22 +14,21 @@ class Body implements Renderable
 {
     private string $lang;
 
-    private $element;
+    private Element $element;
 
     /**
      * @param string $lang
-     * @param $element
+     * @param $content
      */
-    public function __construct(string $lang, $element)
+    public function __construct(string $lang, $content)
     {
         $this->lang = $lang;
-        $this->element = $element;
+        $this->element = new Element('body', $content);
     }
 
     public function render(object $model): iterable
     {
-        yield "<body lang=\"$this->lang\">";
+        $this->element->setAttribute('lang', $this->lang);
         yield $this->element;
-        yield '</body>';
     }
 }

@@ -4,27 +4,27 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
+use SnappyComponents\Helper\Element;
 use SnappyRenderer\Renderable;
 
+/**
+ * @phpstan-import-type element from Renderable
+ */
 class Heading implements Renderable
 {
-    private int $level;
-    private $element;
+    private Element $element;
 
     /**
      * @param int $level
-     * @param $element
+     * @param $content
      */
-    public function __construct(int $level, $element)
+    public function __construct(int $level, $content)
     {
-        $this->level = $level;
-        $this->element = $element;
+        $this->element = new Element("h$level", $content);
     }
 
     public function render(object $model): iterable
     {
-        yield "<h$this->level>";
         yield $this->element;
-        yield "</h$this->level>";
     }
 }

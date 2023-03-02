@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
+use SnappyComponents\Helper\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -11,24 +12,26 @@ use SnappyRenderer\Renderable;
  */
 class Anchor implements Renderable
 {
+    private Element $element;
+
     private string $href;
-    /** @var element */
-    private $element;
+
+    private string $target = '';
 
     /**
      * @param string $href
-     * @param $element
+     * @param element $content
      */
-    public function __construct(string $href, $element)
+    public function __construct(string $href, $content)
     {
+        $this->element = new Element('a', $content);
         $this->href = $href;
-        $this->element = $element;
     }
 
     public function render(object $model): iterable
     {
-        yield "<a href=\"$this->href\">";
+        $this->element->setAttribute('href', $this->href);
+        $this->element->setAttribute('target', $this->target);
         yield $this->element;
-        yield '</a>';
     }
 }

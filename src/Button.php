@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
+use SnappyComponents\Helper\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -13,12 +14,7 @@ use SnappyRenderer\Renderable;
  */
 class Button implements Renderable
 {
-    /**
-     * The inner HTML-Content
-     *
-     * @var element
-     */
-    private $element;
+    private Element $element;
 
     /**
      * This Boolean attribute specifies that the button should have input focus when the page loads. Only one element in a document can have this attribute.
@@ -127,25 +123,11 @@ class Button implements Renderable
     private string $value = '';
 
     /**
-     * @param element $element
-     * @param array $attributes
+     * @param element $content
      */
-    public function __construct($element, array $attributes = [])
+    public function __construct($content)
     {
-        $this->element = $element;
-        foreach ($attributes as $name => $value) {
-            $this->$name = $value;
-        }
-    }
-
-    /**
-     * @param mixed $element
-     * @return Button
-     */
-    public function setElement($element)
-    {
-        $this->element = $element;
-        return $this;
+        $this->element = new Element('button', $content);
     }
 
     /**
@@ -270,52 +252,18 @@ class Button implements Renderable
 
     public function render(object $model): iterable
     {
-        $attributes = '';
-
-        if ($this->autofocus) {
-            $attributes .= ' autofocus';
-        }
-        if ($this->autocomplete !== '') {
-            $attributes .= $this->buildStringAttribute('autocomplete', $this->autocomplete);
-        }
-        if ($this->disabled) {
-            $attributes .= ' disabled';
-        }
-        if ($this->form !== '') {
-            $attributes .= $this->buildStringAttribute('form', $this->form);
-        }
-        if ($this->formaction !== '') {
-            $attributes .= $this->buildStringAttribute('formaction', $this->formaction);
-        }
-        if ($this->formenctype !== '') {
-            $attributes .= $this->buildStringAttribute('formenctype', $this->formenctype);
-        }
-        if ($this->formmethod !== '') {
-            $attributes .= $this->buildStringAttribute('formmethod', $this->formmethod);
-        }
-        if ($this->formnovalidate) {
-            $attributes .= ' formnovalidate';
-        }
-        if ($this->formtarget !== '') {
-            $attributes .= $this->buildStringAttribute('formtarget', $this->formtarget);
-        }
-        if ($this->name !== '') {
-            $attributes .= $this->buildStringAttribute('name', $this->name);
-        }
-        if ($this->type !== '') {
-            $attributes .= $this->buildStringAttribute('type', $this->type);
-        }
-        if ($this->value !== '') {
-            $attributes .= $this->buildStringAttribute('value', $this->value);
-        }
-
-        yield "<button$attributes>";
+        $this->element->toggleAttribute('autofocus', $this->autofocus);
+        $this->element->setAttribute('autocomplete', $this->autocomplete);
+        $this->element->toggleAttribute('disabled', $this->disabled);
+        $this->element->setAttribute('form', $this->form);
+        $this->element->setAttribute('formaction', $this->formaction);
+        $this->element->setAttribute('formenctype', $this->formenctype);
+        $this->element->setAttribute('formmethod', $this->formmethod);
+        $this->element->toggleAttribute('formnovalidate', $this->formnovalidate);
+        $this->element->setAttribute('formtarget', $this->formtarget);
+        $this->element->setAttribute('name', $this->name);
+        $this->element->setAttribute('type', $this->type);
+        $this->element->setAttribute('value', $this->value);
         yield $this->element;
-        yield "</button>";
-    }
-
-    private function buildStringAttribute(string $key, string $value): string
-    {
-        return " $key=\"$value\"";
     }
 }

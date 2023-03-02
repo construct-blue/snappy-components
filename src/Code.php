@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
+use SnappyComponents\Helper\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -11,21 +12,18 @@ use SnappyRenderer\Renderable;
  */
 class Code implements Renderable
 {
-    /** @var element */
-    private $element;
+    private Element $element;
 
     /**
-     * @param element $element
+     * @param element $content
      */
-    public function __construct($element)
+    public function __construct($content)
     {
-        $this->element = $element;
+        $this->element = new Element('code', $content);
     }
 
     public function render(object $model): iterable
     {
-        yield '<code>';
         yield $this->element;
-        yield '</code>';
     }
 }
