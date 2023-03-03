@@ -29,5 +29,11 @@ $document = new SnappyComponents\Document('en', 'Example');
 $documentStrategy = new \SnappyComponents\Strategy\RenderDocument($document);
 // Configuring the renderer with the strategy
 $renderer = new SnappyRenderer\Renderer($documentStrategy);
-echo $renderer->render(include 'greeting.php', (object)['name' => 'world']);
+// Rendering the functional component with a simple view model
+$html = $renderer->render(include 'greeting.php', (object)['name' => 'world']);
+// Outputting the rendered result for demonstration purposes
+echo $html;
+// but usually the output should be set as the body in the response object of your framework
+return $response->withBody($html);
+
 ```
