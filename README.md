@@ -6,7 +6,7 @@
 
  - Install php version 7.4 or higher
  - Run `php composer.phar install` in the project directory
- - Install an start Docker Desktop from docker.com
+ - Install and start Docker Desktop from docker.com
  - Navigate to the project directory and run `docker compose up`
  - Access `localhost:36000` in your web browser
 
