@@ -8,29 +8,29 @@ use SnappyRenderer\Renderable;
 
 class Slot implements Renderable
 {
-    private string $code;
+    private string $name;
 
     /**
-     * @param string $code
+     * @param string $name
      */
-    public function __construct(string $code)
+    public function __construct(string $name)
     {
-        $this->code = $code;
+        $this->name = $name;
     }
 
     /**
      * @return string
      */
-    public function getCode(): string
+    public function getName(): string
     {
-        return $this->code;
+        return $this->name;
     }
 
     public function render(object $model): iterable
     {
         return [
             <<<HTML
-<slot name="$this->code"></slot>
+<slot name="$this->name"></slot>
 HTML
         ];
     }

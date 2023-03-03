@@ -12,7 +12,7 @@ use SnappyRenderer\Renderable;
 class Capture implements Renderable
 {
     private string $slot;
-    private bool $append;
+    private bool $replace;
 
     /**
      * @var element
@@ -22,13 +22,13 @@ class Capture implements Renderable
     /**
      * @param string $slot
      * @param element $content
-     * @param bool $append
+     * @param bool $replace
      */
-    public function __construct(string $slot, $content, bool $append = false)
+    public function __construct(string $slot, $content, bool $replace = false)
     {
         $this->slot = $slot;
         $this->content = $content;
-        $this->append = $append;
+        $this->replace = $replace;
     }
 
     /**
@@ -42,9 +42,9 @@ class Capture implements Renderable
     /**
      * @return bool
      */
-    public function isAppend(): bool
+    public function isReplace(): bool
     {
-        return $this->append;
+        return $this->replace;
     }
 
     public function render(object $model): iterable

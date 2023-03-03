@@ -8,7 +8,7 @@ $renderer = new SnappyRenderer\Renderer(new SnappyComponents\Strategy\RenderDocu
 echo $renderer->render(
     [
         include 'components/header.php',
-        '<h2>Slots</h2>',
+        '<h2>Server-Side Slots</h2>',
         (include 'components/columns.php')([
             '<div>',
             '<p>Slots can be used to inject content to other components. For example to add elements to the <code>&lt;head&gt;</code> from an element in the <code>&lt;body&gt;</code> .',

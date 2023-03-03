@@ -9,7 +9,7 @@ return function ($element){
         '<style>',
         include 'columns-styles.php',
         '</style>'
-    ], true);
+    ]);
     yield '<div class="columns">';
     yield $element;
     yield '</div>';

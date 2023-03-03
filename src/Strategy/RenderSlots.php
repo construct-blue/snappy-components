@@ -37,7 +37,7 @@ class RenderSlots implements Strategy
         $result = $this->strategy->render($element, $model, $renderer, $next);
 
         if ($element instanceof Slot) {
-            $this->slots[$element->getCode()] = $result;
+            $this->slots[$element->getName()] = $result;
         }
 
         $placeholders = [];
@@ -45,7 +45,7 @@ class RenderSlots implements Strategy
 
         foreach ($this->captures as $capture) {
             $placeholders[$capture->getSlot()] = $this->slots[$capture->getSlot()];
-            if ($capture->isAppend() && isset($replacements[$capture->getSlot()])) {
+            if (!$capture->isReplace() && isset($replacements[$capture->getSlot()])) {
                 $replacements[$capture->getSlot()] .= (new Renderer($this->strategy, $next))->render($capture, $model);
             } else {
                 $replacements[$capture->getSlot()] = (new Renderer($this->strategy, $next))->render($capture, $model);
