@@ -1,11 +1,11 @@
 <?php
 
-use SnappyComponents\Article;
-use SnappyComponents\Paragraph;
+use SnappyComponents\Element\Article;
+use SnappyComponents\Element\Paragraph;
+use SnappyComponents\Element\Slot;
+use SnappyComponents\Element\Span;
+use SnappyComponents\Element\Style;
 use SnappyComponents\ShadowRoot;
-use SnappyComponents\Slot;
-use SnappyComponents\Span;
-use SnappyComponents\Style;
 
 require '../vendor/autoload.php';
 

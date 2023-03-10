@@ -1,10 +1,10 @@
 <?php
 
-use SnappyComponents\Article;
-use SnappyComponents\Button;
-use SnappyComponents\Details;
-use SnappyComponents\Div;
-use SnappyComponents\Heading;
+use SnappyComponents\Element\Article;
+use SnappyComponents\Element\Button;
+use SnappyComponents\Element\Details;
+use SnappyComponents\Element\Div;
+use SnappyComponents\Element\Heading;
 use SnappyComponents\Strategy\RenderDocument;
 
 require '../vendor/autoload.php';

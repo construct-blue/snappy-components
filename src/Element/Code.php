@@ -2,21 +2,24 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponents;
+namespace SnappyComponents\Element;
 
-use SnappyComponents\Helper\Element;
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
-class Article implements Renderable
+/**
+ * @phpstan-import-type element from Renderable
+ */
+class Code implements Renderable
 {
     private Element $element;
 
     /**
-     * @param $content
+     * @param element $content
      */
     public function __construct($content)
     {
-        $this->element = new Element('article', $content);
+        $this->element = new Element('code', $content);
     }
 
     public function render(object $model): iterable

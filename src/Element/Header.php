@@ -2,16 +2,22 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponents;
+namespace SnappyComponents\Element;
 
 use SnappyRenderer\Renderable;
 
-class Ul implements Renderable
+/***
+ * @phpstan-import-type element from Renderable
+ */
+class Header implements Renderable
 {
+    /**
+     * @var element
+     */
     private $element;
 
     /**
-     * @param $element
+     * @param element $element
      */
     public function __construct($element)
     {
@@ -20,8 +26,8 @@ class Ul implements Renderable
 
     public function render(object $model): iterable
     {
-        yield '<ul>';
+        yield '<header>';
         yield $this->element;
-        yield '</ul>';
+        yield '</header>';
     }
 }

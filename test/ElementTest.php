@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponentsTest\Helper;
+namespace SnappyComponentsTest;
 
-use SnappyComponents\Helper\Element;
 use PHPUnit\Framework\TestCase;
+use SnappyComponents\Element;
 use SnappyRenderer\Renderer;
 
 class ElementTest extends TestCase

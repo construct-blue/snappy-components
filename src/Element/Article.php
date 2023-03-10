@@ -2,18 +2,21 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponents;
+namespace SnappyComponents\Element;
 
-use SnappyComponents\Helper\Element;
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
-class Aside implements Renderable
+class Article implements Renderable
 {
     private Element $element;
 
+    /**
+     * @param $content
+     */
     public function __construct($content)
     {
-        $this->element = new Element('aside', $content);
+        $this->element = new Element('article', $content);
     }
 
     public function render(object $model): iterable

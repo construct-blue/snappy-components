@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
+use SnappyComponents\Element\Body;
+use SnappyComponents\Element\Head;
+use SnappyComponents\Element\Html;
+use SnappyComponents\Element\Meta;
+use SnappyComponents\Element\Title;
 use SnappyRenderer\Renderable;
 
 /**
@@ -32,6 +37,7 @@ class Document implements Renderable
     {
         $this->lang = $lang;
         $this->title = $title;
+        $this->viewport = self::DEFAULT_VIEWPORT;
     }
 
     /**
@@ -92,32 +98,27 @@ class Document implements Renderable
 
     public function render(object $model): iterable
     {
-        return [
-            '<!DOCTYPE html>',
-            "<html lang=\"$this->lang\">",
-            '<head>',
+        yield '<!DOCTYPE html>';
+        yield new Html(
+            $this->lang,
             [
-                "<title>$this->title</title>",
-                function () {
-                    if ($this->charset !== '') {
-                        yield "<meta charset=\"$this->charset\">";
-                    }
-                    if ($this->viewport !== '') {
-                        yield "<meta name=\"viewport\" content=\"$this->viewport\">";
-                    }
-                    if ($this->description !== '') {
-                        yield "<meta name=\"description\" content=\"$this->description\">";
-                    }
-                },
-                $this->head,
-            ],
-            '</head>',
-            '<body>',
-            [
-                $this->body,
-            ],
-            '</body>',
-            '</html>'
-        ];
+                new Head([
+                    new Title($this->title),
+                    function () {
+                        if ($this->charset !== '') {
+                            yield new Meta(['charset' => $this->charset]);
+                        }
+                        if ($this->viewport !== '') {
+                            yield new Meta(['name' => 'viewport', 'content' => $this->viewport]);
+                        }
+                        if ($this->description !== '') {
+                            yield new Meta(['name' => 'description', 'content' => $this->description]);
+                        }
+                    },
+                    $this->head
+                ]),
+                new Body($this->body)
+            ]
+        );
     }
 }

@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponents\Helper;
+namespace SnappyComponents;
 
+use SnappyComponents\Helper\AttributeMap;
+use SnappyComponents\Helper\ClassList;
 use SnappyRenderer\Renderable;
 
-/**
- * @phpstan-import-type element from Renderable
- */
-class Element implements Renderable
+class VoidElement implements Renderable
 {
     private string $tag;
 
@@ -17,19 +16,12 @@ class Element implements Renderable
     public ClassList $classList;
 
     /**
-     * @var element
-     */
-    private $content;
-
-    /**
      * @param string $tag
-     * @param element $content
      * @param string $classes
      */
-    public function __construct(string $tag, $content, string $classes = '')
+    public function __construct(string $tag, string $classes = '')
     {
         $this->tag = $tag;
-        $this->content = $content;
         $this->attributeMap = new AttributeMap();
         $this->classList = new ClassList($classes);
     }
@@ -69,7 +61,5 @@ class Element implements Renderable
     {
         $this->attributeMap->addClassList($this->classList);
         yield "<$this->tag$this->attributeMap>";
-        yield $this->content;
-        yield "</$this->tag>";
     }
 }

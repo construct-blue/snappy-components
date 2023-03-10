@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponents;
+namespace SnappyComponents\Element;
 
-use SnappyComponents\Helper\Element;
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
 class Span implements Renderable

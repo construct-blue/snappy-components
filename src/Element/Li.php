@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponents;
+namespace SnappyComponents\Element;
 
 use SnappyRenderer\Renderable;
 
-/***
+/**
  * @phpstan-import-type element from Renderable
  */
-class Header implements Renderable
+class Li implements Renderable
 {
     /**
      * @var element
@@ -26,8 +26,8 @@ class Header implements Renderable
 
     public function render(object $model): iterable
     {
-        yield '<header>';
+        yield '<li>';
         yield $this->element;
-        yield '</header>';
+        yield '</li>';
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SnappyComponents\Strategy;
 
 use SnappyComponents\Document;
-use SnappyComponents\Slot;
+use SnappyComponents\Element\Slot;
 use SnappyRenderer\NextStrategy;
 use SnappyRenderer\Renderer;
 use SnappyRenderer\RenderPipeline;

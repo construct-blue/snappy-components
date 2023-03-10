@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
-use SnappyComponents\Helper\Element;
+use SnappyComponents\Element\Template;
+use SnappyComponents\Helper\AttachShadowScript;
 use SnappyRenderer\Renderable;
 
 /**
@@ -38,17 +39,10 @@ class ShadowRoot implements Renderable
 
     public function render(object $model): iterable
     {
-        yield "<$this->tag>";
-        yield new Element('template', $this->template);
-        yield $this->content;
-        yield new Script(
-            <<<JS
-var e = document.currentScript.parentElement;
-if (!e.shadowRoot) {
-    e.attachShadow({mode: "open"}).appendChild(e.firstElementChild.content);
-}
-JS
-        );
-        yield "</$this->tag>";
+        yield new Element($this->tag, [
+            new Template($this->template),
+            $this->content,
+            new AttachShadowScript(),
+        ]);
     }
 }

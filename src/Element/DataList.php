@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SnappyComponents;
+namespace SnappyComponents\Element;
 
 use SnappyRenderer\Renderable;
 use SnappyRenderer\Renderable\Functional;
