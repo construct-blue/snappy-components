@@ -8,7 +8,7 @@ use SnappyComponents\Helper\AttributeMap;
 use SnappyComponents\Helper\ClassList;
 use SnappyRenderer\Renderable;
 
-class VoidElement implements Renderable
+class VoidElement implements Renderable, AttributeAware
 {
     private string $tag;
 
@@ -35,12 +35,11 @@ class VoidElement implements Renderable
     /**
      * @param string $name
      * @param bool|null $force
-     * @return $this
+     * @return bool
      */
-    public function toggleAttribute(string $name, bool $force = null): self
+    public function toggleAttribute(string $name, bool $force = null): bool
     {
-        $this->attributeMap->toggle($name, $force);
-        return $this;
+        return $this->attributeMap->toggle($name, $force);
     }
 
     /**

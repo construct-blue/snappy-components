@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents\Element;
 
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -12,23 +13,18 @@ use SnappyRenderer\Renderable;
  */
 class Head implements Renderable
 {
-    /**
-     * @var element
-     */
-    private $content;
+    private Element $element;
 
     /**
      * @param element $content
      */
-    public function __construct($content)
+    public function __construct(Title $title, ...$content)
     {
-        $this->content = $content;
+        $this->element = new Element('head', [$title, $content]);
     }
 
     public function render(object $model): iterable
     {
-        yield '<head>';
-        yield $this->content;
-        yield '</head>';
+        yield $this->element;
     }
 }

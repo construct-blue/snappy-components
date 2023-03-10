@@ -13,21 +13,18 @@ use SnappyRenderer\Renderable;
  */
 class Body implements Renderable
 {
-    /**
-     * @var element
-     */
-    private $content;
+    private Element $element;
 
     /**
      * @param element $content
      */
-    public function __construct($content)
+    public function __construct(...$content)
     {
-        $this->content = $content;
+        $this->element = new Element('body', $content);
     }
 
     public function render(object $model): iterable
     {
-        yield new Element('body', $this->content);
+        yield $this->element;
     }
 }

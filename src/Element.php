@@ -11,7 +11,7 @@ use SnappyRenderer\Renderable;
 /**
  * @phpstan-import-type element from Renderable
  */
-class Element implements Renderable
+class Element implements Renderable, AttributeAware
 {
     private string $tag;
 
@@ -45,12 +45,11 @@ class Element implements Renderable
     /**
      * @param string $name
      * @param bool|null $force
-     * @return $this
+     * @return bool
      */
-    public function toggleAttribute(string $name, bool $force = null): self
+    public function toggleAttribute(string $name, bool $force = null): bool
     {
-        $this->attributeMap->toggle($name, $force);
-        return $this;
+        return $this->attributeMap->toggle($name, $force);
     }
 
     /**
@@ -61,6 +60,11 @@ class Element implements Renderable
     {
         $this->attributeMap->remove($name);
         return $this;
+    }
+
+    public function getAttribute(string $name): ?string
+    {
+        return $this->attributeMap->get($name);
     }
 
     /**

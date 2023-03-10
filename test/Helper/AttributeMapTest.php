@@ -59,4 +59,12 @@ class AttributeMapTest extends TestCase
         $attributeMap->toggle('test', false);
         $this->assertEquals('', (string)$attributeMap);
     }
+
+    public function testShouldReturnTheNewToggleState()
+    {
+        $attributeMap = new AttributeMap();
+        $this->assertTrue($attributeMap->toggle('test'));
+        $this->assertFalse($attributeMap->toggle('test'));
+        $this->assertTrue($attributeMap->toggle('test'));
+    }
 }

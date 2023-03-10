@@ -19,7 +19,7 @@ class Div implements Renderable
     /**
      * @param element $content
      */
-    public function __construct($content)
+    public function __construct(...$content)
     {
         $this->element = new Element('div', $content);
     }

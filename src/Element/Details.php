@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents\Element;
 
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -14,58 +15,15 @@ use SnappyRenderer\Renderable;
  */
 class Details implements Renderable
 {
-    /**
-     * The visible HTML-Content
-     * @var element
-     */
-    private $summary;
+    private Element $element;
 
-    /**
-     * The disclosed HTML-Content
-     * @var element
-     */
-    private $content;
-
-    /**
-     * This Boolean attribute indicates whether the details — that is, the contents of the &lt;details&gt; element — are currently visible.
-     * The details are shown when this attribute exists, or hidden when this attribute is absent.
-     * By default this attribute is absent which means the details are not visible.
-     *
-     * @var bool
-     */
-    private bool $open = false;
-
-    /**
-     * @param element $summary
-     * @param element $content
-     */
-    public function __construct($summary, $content)
+    public function __construct(Summary $summary, ...$content)
     {
-        $this->summary = $summary;
-        $this->content = $content;
-    }
-
-    /**
-     * @param bool $open
-     * @return Details
-     */
-    public function setOpen(bool $open): Details
-    {
-        $this->open = $open;
-        return $this;
+        $this->element = new Element('details', [$summary, $content]);
     }
 
     public function render(object $model): iterable
     {
-        $attributes = '';
-        if ($this->open) {
-            $attributes .= ' open';
-        }
-        yield "<details>$attributes";
-        yield '<summary>';
-        yield $this->summary;
-        yield '</summary>';
-        yield $this->content;
-        yield '</details>';
+        yield $this->element;
     }
 }

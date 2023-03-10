@@ -12,22 +12,20 @@ use SnappyRenderer\Renderable;
  */
 class Html implements Renderable
 {
-    private string $lang;
-    private $content;
+    private Element $element;
 
     /**
      * @param string $lang
-     * @param $content
+     * @param Head $head
+     * @param Body $body
      */
-    public function __construct(string $lang, $content)
+    public function __construct(string $lang, Head $head, Body $body)
     {
-        $this->lang = $lang;
-        $this->content = $content;
+        $this->element = new Element('html', [$head, $body]);
+        $this->element->setAttribute('lang', $lang);
     }
     public function render(object $model): iterable
     {
-        $element = new Element('html', $this->content);
-        $element->setAttribute('lang', $this->lang);
-        yield $element;
+        yield $this->element;
     }
 }

@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace SnappyComponents\Element;
 
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
 class Option implements Renderable
 {
-    private string $value;
+    private Element $element;
 
-    /**
-     * @param string $value
-     */
-    public function __construct(string $value)
+    public function __construct(string $value, string $content = '')
     {
-        $this->value = $value;
+        $this->element = new Element('option', $content);
+        $this->element->setAttribute('value', $value);
     }
 
     public function render(object $model): iterable
     {
-        yield "<option value=\"$this->value\"></option>";
+        yield $this->element;
     }
 }

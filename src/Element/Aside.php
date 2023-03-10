@@ -11,7 +11,7 @@ class Aside implements Renderable
 {
     private Element $element;
 
-    public function __construct($content)
+    public function __construct(...$content)
     {
         $this->element = new Element('aside', $content);
     }

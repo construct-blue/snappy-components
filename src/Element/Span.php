@@ -9,16 +9,14 @@ use SnappyRenderer\Renderable;
 
 class Span implements Renderable
 {
-    private string $content;
-
-    private string $slot = '';
+    private Element $element;
 
     /**
      * @param string $content
      */
     public function __construct(string $content)
     {
-        $this->content = $content;
+        $this->element = new Element('span', $content);
     }
 
     /**
@@ -27,14 +25,12 @@ class Span implements Renderable
      */
     public function setSlot(string $slot): Span
     {
-        $this->slot = $slot;
+        $this->element->setAttribute('slot', $slot);
         return $this;
     }
 
     public function render(object $model): iterable
     {
-        $element = new Element('span', $this->content);
-        $element->setAttribute('slot', $this->slot);
-        yield $element;
+        yield $this->element;
     }
 }

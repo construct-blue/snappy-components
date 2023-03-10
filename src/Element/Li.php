@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents\Element;
 
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -11,23 +12,18 @@ use SnappyRenderer\Renderable;
  */
 class Li implements Renderable
 {
-    /**
-     * @var element
-     */
-    private $element;
+    private Element $element;
 
     /**
-     * @param element $element
+     * @param element $content
      */
-    public function __construct($element)
+    public function __construct(...$content)
     {
-        $this->element = $element;
+        $this->element = new Element('li', $content);
     }
 
     public function render(object $model): iterable
     {
-        yield '<li>';
         yield $this->element;
-        yield '</li>';
     }
 }

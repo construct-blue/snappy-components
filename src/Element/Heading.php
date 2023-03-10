@@ -18,7 +18,7 @@ class Heading implements Renderable
      * @param int $level
      * @param $content
      */
-    public function __construct(int $level, $content)
+    public function __construct(int $level, ...$content)
     {
         $this->element = new Element("h$level", $content);
     }

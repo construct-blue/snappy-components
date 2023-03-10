@@ -14,7 +14,7 @@ class Article implements Renderable
     /**
      * @param $content
      */
-    public function __construct($content)
+    public function __construct(...$content)
     {
         $this->element = new Element('article', $content);
     }

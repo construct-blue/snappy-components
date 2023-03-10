@@ -12,21 +12,16 @@ use SnappyRenderer\Renderable;
  */
 class Slot implements Renderable
 {
-    private string $name;
-
-    /**
-     * @var null|element
-     */
-    private $content;
+    private Element $element;
 
     /**
      * @param string $name
      * @param null|element $content
      */
-    public function __construct(string $name, $content = null)
+    public function __construct(string $name, ...$content)
     {
-        $this->name = $name;
-        $this->content = $content;
+        $this->element = new Element('slot', $content);
+        $this->element->setAttribute('name', $name);
     }
 
     /**
@@ -34,13 +29,11 @@ class Slot implements Renderable
      */
     public function getName(): string
     {
-        return $this->name;
+        return $this->element->getAttribute('name');
     }
 
     public function render(object $model): iterable
     {
-        $element = new Element('slot', $this->content ?? '');
-        $element->setAttribute('name', $this->name);
-        yield $element;
+        yield $this->element;
     }
 }

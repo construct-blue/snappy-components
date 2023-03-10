@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents\Element;
 
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -11,20 +12,15 @@ use SnappyRenderer\Renderable;
  */
 class Style implements Renderable
 {
-    /**
-     * @var element
-     */
-    private $css;
+    private Element $element;
 
-    public function __construct($css)
+    public function __construct(...$css)
     {
-        $this->css = $css;
+        $this->element = new Element('style', $css);
     }
 
     public function render(object $model): iterable
     {
-        yield '<style>';
-        yield $this->css;
-        yield '</style>';
+        yield $this->element;
     }
 }

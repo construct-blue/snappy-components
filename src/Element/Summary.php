@@ -7,16 +7,12 @@ namespace SnappyComponents\Element;
 use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
-class Script implements Renderable
+class Summary implements Renderable
 {
     private Element $element;
-
-    /**
-     * @param $content
-     */
     public function __construct(...$content)
     {
-        $this->element = new Element('script', $content);
+        $this->element = new Element('summary', $content);
     }
 
     public function render(object $model): iterable

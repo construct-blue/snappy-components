@@ -101,24 +101,22 @@ class Document implements Renderable
         yield '<!DOCTYPE html>';
         yield new Html(
             $this->lang,
-            [
-                new Head([
-                    new Title($this->title),
-                    function () {
-                        if ($this->charset !== '') {
-                            yield new Meta(['charset' => $this->charset]);
-                        }
-                        if ($this->viewport !== '') {
-                            yield new Meta(['name' => 'viewport', 'content' => $this->viewport]);
-                        }
-                        if ($this->description !== '') {
-                            yield new Meta(['name' => 'description', 'content' => $this->description]);
-                        }
-                    },
-                    $this->head
-                ]),
-                new Body($this->body)
-            ]
+            new Head(
+                new Title($this->title),
+                function () {
+                    if ($this->charset !== '') {
+                        yield new Meta(['charset' => $this->charset]);
+                    }
+                    if ($this->viewport !== '') {
+                        yield new Meta(['name' => 'viewport', 'content' => $this->viewport]);
+                    }
+                    if ($this->description !== '') {
+                        yield new Meta(['name' => 'description', 'content' => $this->description]);
+                    }
+                },
+                $this->head
+            ),
+            new Body($this->body)
         );
     }
 }

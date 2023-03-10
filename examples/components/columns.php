@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use SnappyComponents\Capture;
 
-return function ($element){
+return function (...$element){
     yield new Capture('head', [
         '<style>',
         include 'columns-styles.php',

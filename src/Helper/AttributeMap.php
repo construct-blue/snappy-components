@@ -64,6 +64,16 @@ class AttributeMap implements Stringable
         return $this;
     }
 
+    public function get(string $name): ?string
+    {
+        return $this->attributes[$name] ?? null;
+    }
+
+    public function has(string $name): bool
+    {
+        return $this->booleanAttributes[$name] ?? false;
+    }
+
     public function __toString()
     {
         $attributes = '';

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace SnappyComponents\Element;
 
+use SnappyComponents\AttributeAware;
 use SnappyComponents\VoidElement;
 use SnappyRenderer\Renderable;
 
-class Meta implements Renderable
+class Meta implements Renderable, AttributeAware
 {
     private VoidElement $element;
 
@@ -23,6 +24,17 @@ class Meta implements Renderable
     public function setAttribute(string $name, string $value): self
     {
         $this->element->setAttribute($name, $value);
+        return $this;
+    }
+
+    public function toggleAttribute(string $name, bool $force = null): bool
+    {
+        return $this->element->toggleAttribute($name, $force);
+    }
+
+    public function removeAttribute(string $name): AttributeAware
+    {
+        $this->element->removeAttribute($name);
         return $this;
     }
 

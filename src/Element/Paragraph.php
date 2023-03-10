@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents\Element;
 
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -11,20 +12,18 @@ use SnappyRenderer\Renderable;
  */
 class Paragraph implements Renderable
 {
-    private $element;
+    private Element $element;
 
     /**
-     * @param $element
+     * @param $content
      */
-    public function __construct($element)
+    public function __construct(...$content)
     {
-        $this->element = $element;
+        $this->element = new Element('p', $content);
     }
 
     public function render(object $model): iterable
     {
-        yield '<p>';
         yield $this->element;
-        yield '</p>';
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents\Element;
 
+use SnappyComponents\Element;
 use SnappyRenderer\Renderable;
 
 /**
@@ -11,23 +12,18 @@ use SnappyRenderer\Renderable;
  */
 class Ul implements Renderable
 {
-    /**
-     * @var element
-     */
-    private $element;
+    private Element $element;
 
     /**
-     * @param element $element
+     * @param Li ...$items
      */
-    public function __construct($element)
+    public function __construct(Li ...$items)
     {
-        $this->element = $element;
+        $this->element = new Element('ul', $items);
     }
 
     public function render(object $model): iterable
     {
-        yield '<ul>';
         yield $this->element;
-        yield '</ul>';
     }
 }
