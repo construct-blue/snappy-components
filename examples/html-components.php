@@ -1,16 +1,16 @@
 <?php
 
-use SnappyComponents\Element\Article;
-use SnappyComponents\Element\Button;
-use SnappyComponents\Element\Details;
-use SnappyComponents\Element\Div;
-use SnappyComponents\Element\Heading;
-use SnappyComponents\Element\Summary;
+use SnappyComponents\HTML\Article;
+use SnappyComponents\HTML\Button;
+use SnappyComponents\HTML\Details;
+use SnappyComponents\HTML\Div;
+use SnappyComponents\HTML\Heading;
+use SnappyComponents\HTML\Summary;
 use SnappyComponents\Strategy\RenderDocument;
 
 require '../vendor/autoload.php';
 
-$document = new SnappyComponents\Document('en', 'Snappy Components');
+$document = new SnappyComponents\HTMLDocument('en', 'Snappy Components');
 $renderer = new SnappyRenderer\Renderer(new RenderDocument($document));
 
 echo $renderer->render([

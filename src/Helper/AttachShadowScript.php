@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents\Helper;
 
-use SnappyComponents\Element\Script;
+use SnappyComponents\HTML\Script;
 use SnappyRenderer\Renderable;
 
 class AttachShadowScript implements Renderable

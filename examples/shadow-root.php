@@ -1,15 +1,15 @@
 <?php
 
-use SnappyComponents\Element\Article;
-use SnappyComponents\Element\Paragraph;
-use SnappyComponents\Element\Slot;
-use SnappyComponents\Element\Span;
-use SnappyComponents\Element\Style;
+use SnappyComponents\HTML\Article;
+use SnappyComponents\HTML\Paragraph;
+use SnappyComponents\HTML\Slot;
+use SnappyComponents\HTML\Span;
+use SnappyComponents\HTML\Style;
 use SnappyComponents\ShadowRoot;
 
 require '../vendor/autoload.php';
 
-$document = new SnappyComponents\Document('en', 'Snappy Components');
+$document = new SnappyComponents\HTMLDocument('en', 'Snappy Components');
 $renderer = new SnappyRenderer\Renderer(new SnappyComponents\Strategy\RenderDocument($document));
 
 echo $renderer->render(

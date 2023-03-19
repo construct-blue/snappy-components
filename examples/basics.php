@@ -3,7 +3,7 @@
 require '../vendor/autoload.php';
 
 // Template for the HTML-Document
-$document = new SnappyComponents\Document('en', 'Snappy Components');
+$document = new SnappyComponents\HTMLDocument('en', 'Snappy Components');
 // Strategy to wrap any rendered renderable with an HTML-Document
 $documentStrategy = new SnappyComponents\Strategy\RenderDocument($document);
 // Configuring the renderer with the strategy

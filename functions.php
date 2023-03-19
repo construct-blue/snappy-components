@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use SnappyComponents\Document;
+use SnappyComponents\HTMLDocument;
 
-function v_doc(string $lang, string $title, iterable $head, iterable $body): Document
+function v_doc(string $lang, string $title, iterable $head, iterable $body): HTMLDocument
 {
-    return new Document($lang, $title, $head, $body);
+    return new HTMLDocument($lang, $title, $head, $body);
 }

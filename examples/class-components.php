@@ -2,7 +2,7 @@
 
 require '../vendor/autoload.php';
 
-$document = new SnappyComponents\Document('en', 'Snappy Components');
+$document = new SnappyComponents\HTMLDocument('en', 'Snappy Components');
 $renderer = new SnappyRenderer\Renderer(new SnappyComponents\Strategy\RenderDocument($document));
 
 echo $renderer->render(

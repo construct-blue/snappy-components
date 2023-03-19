@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace SnappyComponentsTest\Helper;
 
-use SnappyComponents\Helper\ClassList;
+use SnappyComponents\Helper\CSSClassList;
 use PHPUnit\Framework\TestCase;
 
 class ClassListTest extends TestCase
 {
     public function testShouldPassClassStringFromConstruct()
     {
-        $classList = new ClassList('foo bar baz');
+        $classList = new CSSClassList('foo bar baz');
         $this->assertTrue($classList->has('foo'));
         $this->assertTrue($classList->has('bar'));
         $this->assertTrue($classList->has('baz'));
@@ -21,7 +21,7 @@ class ClassListTest extends TestCase
 
     public function testShouldAddMultipleClassesAtOnce()
     {
-        $classList = new ClassList('foo');
+        $classList = new CSSClassList('foo');
         $classList->add('bar', 'baz');
         $this->assertTrue($classList->has('foo'));
         $this->assertTrue($classList->has('bar'));
@@ -32,7 +32,7 @@ class ClassListTest extends TestCase
 
     public function testShouldRemoveMultipleClassesAtOnce()
     {
-        $classList = new ClassList('foo bar baz');
+        $classList = new CSSClassList('foo bar baz');
         $classList->remove('foo', 'bar');
         $this->assertFalse($classList->has('foo'));
         $this->assertFalse($classList->has('bar'));

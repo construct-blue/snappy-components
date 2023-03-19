@@ -6,7 +6,7 @@ namespace SnappyComponentsTest;
 
 use PHPUnit\Framework\TestCase;
 use SnappyComponents\Capture;
-use SnappyComponents\Document;
+use SnappyComponents\HTMLDocument;
 use SnappyComponents\Strategy\RenderDocument;
 use SnappyRenderer\Renderable\Elements;
 use SnappyRenderer\Renderer;
@@ -15,7 +15,7 @@ class DocumentTest extends TestCase
 {
     public function testRenderEmpty()
     {
-        $doc = new Document('en', 'example');
+        $doc = new HTMLDocument('en', 'example');
         $doc->setViewport('');
         $renderer = new Renderer();
         $result = $renderer->render($doc, (object)[]);
@@ -27,7 +27,7 @@ class DocumentTest extends TestCase
 
     public function testRenderWithContent()
     {
-        $doc = new Document('en', 'example');
+        $doc = new HTMLDocument('en', 'example');
         $doc->setViewport('');
         $doc->setHead(['head']);
         $doc->setBody(['body']);
@@ -41,7 +41,7 @@ class DocumentTest extends TestCase
 
     public function testRenderWithDescription()
     {
-        $doc = new Document('en', 'example');
+        $doc = new HTMLDocument('en', 'example');
         $doc->setViewport('');
         $doc->setDescription('test');
         $renderer = new Renderer();
@@ -54,7 +54,7 @@ class DocumentTest extends TestCase
 
     public function testShouldWrapComponentInHtmlDoc()
     {
-        $doc = new Document('en', 'example');
+        $doc = new HTMLDocument('en', 'example');
         $doc->setViewport('');
         $renderer = new Renderer(new RenderDocument($doc));
         $result = $renderer->render(new Elements(['<h1>example</h1>']), (object)[]);
@@ -66,7 +66,7 @@ class DocumentTest extends TestCase
 
     public function testShouldInsertSlotInHead()
     {
-        $doc = new Document('en', 'example');
+        $doc = new HTMLDocument('en', 'example');
         $doc->setViewport('');
         $renderer = new Renderer(new RenderDocument($doc));
         $result = $renderer->render([

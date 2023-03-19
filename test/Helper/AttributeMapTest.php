@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace SnappyComponentsTest\Helper;
 
-use SnappyComponents\Helper\AttributeMap;
+use SnappyComponents\Helper\HTMLAttributeMap;
 use PHPUnit\Framework\TestCase;
-use SnappyComponents\Helper\ClassList;
+use SnappyComponents\Helper\CSSClassList;
 
 class AttributeMapTest extends TestCase
 {
     public function testShouldOmitEmptyAttributes()
     {
-        $attributeMap = new AttributeMap();
+        $attributeMap = new HTMLAttributeMap();
         $attributeMap->set('id', 'test');
         $attributeMap->set('title', '');
         $this->assertEquals(' id="test"', (string)$attributeMap);
@@ -20,32 +20,15 @@ class AttributeMapTest extends TestCase
 
     public function testShouldOutputBooleanAttributes()
     {
-        $attributeMap = new AttributeMap();
+        $attributeMap = new HTMLAttributeMap();
         $attributeMap->toggle('test', true);
         $attributeMap->toggle('title', false);
         $this->assertEquals(' test', (string)$attributeMap);
     }
 
-    public function testShouldOutputClasses()
-    {
-        $attributeMap = new AttributeMap();
-        $classList = new ClassList('foo bar');
-        $attributeMap->addClassList($classList);
-        $this->assertEquals(' class="foo bar"', (string)$attributeMap);
-    }
-
-    public function testValuesWithBooleansWithClases()
-    {
-        $attributeMap = new AttributeMap();
-        $attributeMap->set('id', 'test');
-        $attributeMap->toggle('disabled', true);
-        $attributeMap->addClassList(new ClassList('foo bar'));
-        $this->assertEquals(' class="foo bar" id="test" disabled', (string)$attributeMap);
-    }
-
     public function testShouldToggleBooleans()
     {
-        $attributeMap = new AttributeMap();
+        $attributeMap = new HTMLAttributeMap();
         $attributeMap->toggle('test');
         $this->assertEquals(' test', (string)$attributeMap);
         $attributeMap->toggle('test');
@@ -62,7 +45,7 @@ class AttributeMapTest extends TestCase
 
     public function testShouldReturnTheNewToggleState()
     {
-        $attributeMap = new AttributeMap();
+        $attributeMap = new HTMLAttributeMap();
         $this->assertTrue($attributeMap->toggle('test'));
         $this->assertFalse($attributeMap->toggle('test'));
         $this->assertTrue($attributeMap->toggle('test'));

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponents;
 
-use SnappyComponents\Element\Template;
+use SnappyComponents\HTML\Template;
 use SnappyComponents\Helper\AttachShadowScript;
 use SnappyRenderer\Renderable;
 
@@ -39,7 +39,7 @@ class ShadowRoot implements Renderable
 
     public function render(object $model): iterable
     {
-        yield new Element($this->tag, [
+        yield new HTMLElement($this->tag, [
             new Template($this->template),
             $this->content,
             new AttachShadowScript(),

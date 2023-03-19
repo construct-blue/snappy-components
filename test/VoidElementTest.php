@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SnappyComponentsTest;
 
-use SnappyComponents\VoidElement;
+use SnappyComponents\VoidHTMLElement;
 use PHPUnit\Framework\TestCase;
 use SnappyRenderer\Renderer;
 
@@ -12,7 +12,7 @@ class VoidElementTest extends TestCase
 {
     public function testShouldNotRenderClosingTagOrSlash()
     {
-        $voidElement = new VoidElement('input');
+        $voidElement = new VoidHTMLElement('input');
         $renderer = new Renderer();
 
         self::assertEquals('<input>', $renderer->render($voidElement, (object)[]));
@@ -20,11 +20,11 @@ class VoidElementTest extends TestCase
 
     public function testShouldRenderAttributes()
     {
-        $voidElement = new VoidElement('input');
-        $voidElement->setAttribute('type', 'text');
-        $voidElement->setAttribute('name', 'user');
-        $voidElement->setAttribute('value', 'max');
-        $voidElement->toggleAttribute('disabled');
+        $voidElement = new VoidHTMLElement('input');
+        $voidElement->setHTMLAttribute('type', 'text');
+        $voidElement->setHTMLAttribute('name', 'user');
+        $voidElement->setHTMLAttribute('value', 'max');
+        $voidElement->toggleHTMLAttribute('disabled');
 
         $renderer = new Renderer();
 

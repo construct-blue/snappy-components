@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SnappyComponents\Strategy;
 
 use SnappyComponents\Capture;
-use SnappyComponents\Element\Slot;
+use SnappyComponents\HTML\Slot;
 use SnappyRenderer\NextStrategy;
 use SnappyRenderer\Renderer;
 use SnappyRenderer\Strategy;

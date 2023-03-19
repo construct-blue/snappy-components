@@ -6,7 +6,7 @@ namespace SnappyComponentsTest;
 
 use PHPUnit\Framework\TestCase;
 use SnappyComponents\Capture;
-use SnappyComponents\Element\Slot;
+use SnappyComponents\HTML\Slot;
 use SnappyComponents\Strategy\RenderSlots;
 use SnappyRenderer\Renderer;
 use SnappyRenderer\RenderPipeline;
